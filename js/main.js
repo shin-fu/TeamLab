@@ -75,13 +75,12 @@ function displaySearchView(){
     $("#todoContainer").hide();
     $("#searchContainer").show();
     currentList = -1;
-
 }
-/***
+/*
 *リストを保存する
 *key:List#"id"
 *value:[タイトル,ToDo1,Todo2.......]
-***/
+*/
 function saveList(){
     var listTitle = $("#listForm");
     console.log(listTitle);
@@ -93,11 +92,11 @@ function saveList(){
     }
 }
 
-/***
+/*
 *Todoを保存する
 *key:Task#"id"
 *value:[タイトル,内容,状態]
-***/
+*/
 function saveTask() {
     // IDをキーにして入力されたテキストを保存する
     var taskTitle = $("#formText");
@@ -123,9 +122,9 @@ function escapeText(text) {
 
 // 入力チェックを行う
 function checkText(text,isList) {
-    // 文字数が0または20以上は不可
-    if (0 === text.length || 20 < text.length) {
-     alert("文字数は1〜20字にしてください");
+    // 文字数が0または30以上は不可
+    if (0 === text.length || 30 < text.length) {
+     alert("文字数は1〜30字にしてください");
      return false;
  }
     // すでに入力された値があれば不可
@@ -137,7 +136,6 @@ function checkText(text,isList) {
         if(isList && key.indexOf("Task#")!=-1)continue;
         if(!isList && key.indexOf("List#")!=-1)continue;
         if (text === value[0]) {
-
          alert("同じ内容は避けてください");
          return false;
      }
@@ -212,7 +210,6 @@ function showTask(){
         st += value[TITLE] + "\" class=\"checkbox\">";
         st += "<label for=\"check_"+all[i]+"\"class=\"checkbox\">";
         st += value[TITLE]+"</label>";
-        console.log(value[STATE]);
         if(value[STATE]==="TODO"){
             html1.push(st);
         }else{
@@ -243,7 +240,6 @@ function showList(){
         var value = JSON.parse(localStorage.getItem("List#"+keyList[i]));
         var st = "<button id=List_"+keyList[i]+" class=\"liststyle\"><b><font size=4>"+value[0]+"</font></b><br>";
         st += (value.length-1)+"個中"+getToDoNum(value)+"個のToDoが未完了</button>";
-        console.log(st);
         html.push(st);
     }
     list.append(html.join(''));
@@ -281,7 +277,7 @@ function showSearchResult(){
             st += value[TITLE] + "\" class=\"checkbox\">";
             st += "<label for=\"check_"+i+"\"class=\"checkbox\">";
             st += value[TITLE]+"</label>";
-            console.log(value[STATE]);
+//            console.log(value[STATE]);
             if(value[STATE]==="TODO"){
                 html1.push(st);
             }else{
@@ -291,7 +287,6 @@ function showSearchResult(){
         }
     }
     $("#searchbox").val("");
-    console.log(currentTasks);
     $("#searchWord").children().remove();
     $("#searchWord").append("<h2 class=\"sample\">　"+word+"</h2>");
     html1.push("</section></form>");
@@ -313,17 +308,14 @@ function getToDoNum(list){
 }
 //未完了タスクを完了タスクにする
 function moveDone(){
-    console.log("movedone:"+currentList);
     var all;
     if(currentList===-1){
         all = currentTasks;
     }else{
         all = JSON.parse(localStorage.getItem("List#"+currentList));
     }
-    console.log(all);
     for(var i = all.length-1;i>=1;i--){
         var cb =$("#check_"+all[i]);
-        console.log(cb);
         if(cb.prop("checked")){
             var value = JSON.parse(localStorage.getItem("Task#"+all[i]));
             value[STATE] = "DONE";
