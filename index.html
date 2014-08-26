@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<link rel="stylesheet" href="main.css">
+	<title>ToDoリスト</title>
+</head>
+<body bgcolor="F0F0F0">
+	<div id="titleContainer" class="title">
+		<div id="right">
+			<button size="6" class="head" id="searchButton">検索</button>	
+		</div>
+			<button size="6" id="top" class="head">ToDoリスト</button>	
+		<div>
+		</div>
+		<p class="clearRight" />
+	</div>
+	<div id="listContainer">
+	    <input id="listForm" type="text" class="textbox">
+	    <input id="makeListButton" type="button" value="リストの作成" class="createbutton">
+	   	<h3 class="sample">ToDoリスト一覧</h3>
+	    <div id="todoList"></div>
+    </div>
+
+	<div id="todoContainer">
+		<div id="todoName"></div>
+		<h3 class="sample">ToDoの追加</h3>
+		<p>タイトル</p>
+		<input id="formText" type="text" class="textbox">
+		<p>期限</p>
+		<input id="summaryText" type="text" class="textbox">
+		<br>
+		<input id="formButton" type="button" value="追加" class="b">
+	    <h3 class="sample">未完了のToDo</h3>
+	  	<div id="list"></div>
+	  	<input id="moveDone" type="button" value="タスク完了" class="b">
+	  	<h3 class="sample">完了済みのToDo</h3>
+	  	<div id="doneList"></div>
+	</div>
+	<div id="searchContainer">
+		<div id="searchWord"></div>
+		<h3 class="sample">検索</h3>
+		<input id="searchbox" type="text" class="textbox">
+		<input id="search" type="button" value="ToDoの検索" class="createbutton">
+		<h3 class="sample">未完了のToDo</h3>
+		<div id="sList"></div>
+		<input id="sMoveDone" type="button" value="タスク完了" class="b">
+	  	<h3 class="sample">完了済みのToDo</h3>
+	  	<div id="sDoneList"></div>
+	</div>
+    <script src="js/jquery-2.0.0.min.js"></script>
+	<script src="js/main.js"></script>
+</body>
+</html>
